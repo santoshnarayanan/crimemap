@@ -10,9 +10,9 @@ if dbconfig.test:
 else:
     from dbhelper import DBHelper
 
-
 app = Flask(__name__)
 DB = DBHelper()
+
 
 
 @app.route("/")
@@ -20,6 +20,14 @@ def home():
     crimes = DB.get_all_crimes()
     crimes = json.dumps(crimes)
     return render_template("home1.html", crimes=crimes)
+# The below lines of code is commented from chapter 6 implementation
+# def home():
+#     try:
+#         data = DB.get_all_inputs()
+#     except Exception as e:
+#         print(e)
+#         data = None
+#     return render_template("home1.html", data=data)
 
 
 @app.route("/add", methods=["POST"])
